@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Season Grow – AGRONET</title>
+
+    <!-- Icons + Fonts -->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet">
+
+    <!-- Your project stylesheet -->
+    <link href="/static/css/styles.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('https://images.stockcake.com/public/4/4/5/445bc036-e2f7-47bd-8b97-22bb4b9788b0/growth-meets-serenity-stockcake.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        #Box, #Box1 {
+            padding: 25px;
+            border-radius: 2rem;
+            background-color: rgba(255,255,255,0.80);
+            box-shadow: 0px 8px 16px 4px rgba(0,0,0,0.4);
+        }
+        .row { margin-top: 170px; }
+        .btn-custom {
+            color: white;
+            background-color: rgba(0,0,0,0.70);
+            font-weight: bold;
+            width: 140px;
+            height: 50px;
+            border-radius: 30px;
+            font-size: 20px;
+            box-shadow: 0px 7px 15px #888;
+        }
+    </style>
+</head>
+
+
+<body id="page-top">
+
+    <!-- ⭐ NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+
+            <a class="navbar-brand h1" href="/crop">AGRONET</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                Menu <i class="fas fa-bars ms-1"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+
+                    <li class="nav-item"><a class="nav-link" href="/crop">Crop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Yield">CropStats</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/fertilizer">Fertilizer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sell_tool">Tools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sell_crop">Crops</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/aweather">Weather</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/amarket">Market</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/acommunity">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/season-grow">SeasonGrow</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/agrichat">AgroChat</a></li>
+
+                    <!-- ⭐ Your new menu item -->
+                
+
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="data:image/jpg;base64,{{dp}}" style="width:40px;height:40px;border-radius:50%;">
+                            <br>{{name}}
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ⭐ PAGE CONTENT -->
+    <div class="container">
+        <div class="row">
+
+            <!-- LEFT FORM (ONLY CROP SELECTION) -->
+            <div class="col-lg-6">
+                <div id="Box">
+
+                    <center><h3>Season Grow – Crop Timeline</h3></center>
+                    <hr><br>
+
+                    <form method="POST" action="/season-grow">
+
+                        <!-- CROP -->
+                        <div class="form-group">
+                            <label><b>Select Crop</b></label>
+                            <select name="crop" id="cropSelect" class="form-control" required>
+                                <option value="">Select Crop</option>
+                                {% for c in crops %}
+                                <option value="{{c}}">{{c}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <br><br>
+
+                        <center>
+                            <button type="submit" class="btn btn-custom">Predict</button>
+                        </center>
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- RIGHT OUTPUT -->
+            <div class="col-lg-6">
+                <div id="Box1">
+
+                    <center><h3>Output</h3></center>
+                    <hr><br>
+
+                    {% if error_msg %}
+                        <h4 style="color:red;">{{error_msg}}</h4>
+                    {% endif %}
+
+                    {% if prediction %}
+                        <h4><b>Crop:</b> {{prediction.crop}}</h4>
+                        <h4><b>Recommended Season:</b> {{prediction.season_pred}}</h4>
+                        <h4><b>Estimated Harvest Days:</b> {{prediction.days_pred}} days</h4>
+                        <h4><b>Sowing Period:</b> {{prediction.sowing_start}} → {{prediction.sowing_end}}</h4>
+                        <h4><b>Harvest Period:</b> {{prediction.harvest_start}} → {{prediction.harvest_end}}</h4>
+                        <h4><b>Soil Type:</b> {{prediction.soil_type}}</h4>
+
+                        <hr>
+
+                        <h4><b>Temperature Used:</b> {{prediction.temp_mean}}°C</h4>
+                        <h4><b>Rainfall Used:</b> {{prediction.rain_mean}} mm</h4>
+                        <h4><b>Soil pH Used:</b> {{prediction.ph_mean}}</h4>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

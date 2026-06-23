@@ -1,0 +1,32 @@
+crop,temp_mean,rain_mean,ph_mean,sowing_start,sowing_end,harvest_start,harvest_end,soil_type
+Rice,30,200,6.5,June,July,November,December,Loamy
+Wheat,20,100,6.8,October,November,March,April,Clay
+Maize,28,120,6.2,May,June,September,October,Sandy
+Cotton,32,180,7.0,March,April,September,October,Black cotton soil
+Groundnut,25,160,6.3,June,July,October,November,Sandy loam
+Sugarcane,28,140,7.2,January,February,December,December,Alluvial
+Tomato,26,90,6.5,July,August,November,December,Red soil
+Onion,24,80,6.0,October,November,March,April,Loamy
+Potato,18,100,5.8,October,November,February,March,Sandy loam
+Bajra,30,120,7.5,June,July,October,November,Sandy
+Jowar,28,110,7.2,June,July,October,November,Clay loam
+Ragi,26,80,6.8,June,July,October,November,Red loam
+Tur (Pigeon Pea),28,150,7.0,June,July,December,January,Black cotton soil
+Moong,27,100,6.5,June,July,September,October,Loamy
+Urad,27,110,6.5,June,July,September,October,Sandy loam
+Soybean,26,150,6.3,June,July,October,November,Black soil
+Sunflower,25,60,6.8,January,February,April,May,Loamy sand
+Mustard,18,50,6.2,October,November,February,March,Loamy
+Barley,15,40,6.5,October,November,March,April,Clay loam
+Cabbage,20,70,6.5,August,September,December,January,Loamy
+Cauliflower,22,75,6.5,September,October,January,February,Loamy
+Carrot,18,60,6.2,September,October,January,February,Sandy loam
+Chilli,28,100,6.8,June,July,October,November,Black soil
+Peas,15,80,6.5,October,November,February,March,Loamy soil
+Mango,30,200,6.5,December,January,April,May,Alluvial
+Banana,28,150,6.2,February,March,November,December,Loamy soil
+Papaya,26,140,6.7,February,March,October,November,Sandy loam
+Grapes,25,60,6.8,December,January,April,May,Black soil
+Guava,24,80,6.5,June,July,October,November,Alluvial soil
+Tea,22,220,5.5,March,April,November,December,Laterite soil
+Coffee,23,180,6.0,June,July,January,February,Red loam

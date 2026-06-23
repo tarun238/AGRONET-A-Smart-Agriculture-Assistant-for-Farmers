@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<title>AGRONET | Crop Recommendation</title>
+
+<!-- Icons & Fonts -->
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet">
+
+<!-- CSS -->
+<link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet">
+
+<!-- Cities JS -->
+<script src="{{ url_for('static', filename='js/cities.js') }}"></script>
+
+<style>
+body{
+  background-image:url('https://images.stockcake.com/public/4/4/5/445bc036-e2f7-47bd-8b97-22bb4b9788b0/growth-meets-serenity-stockcake.jpg');
+  background-size:cover;
+  background-attachment:fixed;
+}
+#Box,#Box1{
+  padding:25px;
+  border-radius:2rem;
+  background:rgba(255,255,255,0.8);
+  box-shadow:0px 8px 16px 4px #000;
+}
+.row{margin-top:150px;}
+</style>
+
+<script>
+/* Soil Auto-fill */
+const soilProperties={
+ '1':{N:76,P:120.4,K:10,pH:7.5},
+ '2':{N:25,P:12,K:18,pH:6.0},
+ '3':{N:35,P:18,K:25,pH:6.5},
+ '4':{N:20,P:10,K:15,pH:5.8},
+ '5':{N:15,P:8,K:12,pH:7.0},
+ '0':{N:'',P:'',K:'',pH:''}
+};
+
+function autoFillSoilProperties(){
+ const d=soilProperties[document.getElementById("soil").value];
+ if(d){
+  Nitrogen.value=d.N;
+  Phosphorous.value=d.P;
+  Pottasium.value=d.K;
+  ph.value=d.pH;
+ }
+}
+
+function handleStateChange(index){
+ print_city("state",index);
+}
+</script>
+</head>
+
+<body>
+
+<!-- ✅ NAVBAR WITH ALL PAGES -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+ <div class="container">
+
+  <a class="navbar-brand fw-bold" href="/crop">AGRONET</a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+    data-bs-target="#navbarResponsive">
+    Menu <i class="fas fa-bars ms-1"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+   <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+
+    <li class="nav-item"><a class="nav-link" href="/crop">Crop</a></li>
+    <li class="nav-item"><a class="nav-link" href="/Yield">CropStats</a></li>
+    <li class="nav-item"><a class="nav-link" href="/fertilizer">Fertilizer</a></li>
+    <li class="nav-item"><a class="nav-link" href="/sell_tool">Tools</a></li>
+    <li class="nav-item"><a class="nav-link" href="/sell_crop">Crops</a></li>
+    <li class="nav-item"><a class="nav-link" href="/aweather">Weather</a></li>
+    <li class="nav-item"><a class="nav-link" href="/amarket">Market</a></li>
+    <li class="nav-item"><a class="nav-link" href="/acommunity">Community</a></li>
+    <li class="nav-item"><a class="nav-link" href="/season-grow">SeasonGrow</a></li>
+    <li class="nav-item"><a class="nav-link" href="/agrichat">AgroChat</a></li>
+    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+
+    <li class="nav-item">
+      <a class="nav-link text-center" href="#">
+        <img src="data:image/jpg;base64,{{dp}}" style="width:40px;height:40px;border-radius:50%">
+        <br>{{name}}
+      </a>
+    </li>
+
+   </ul>
+  </div>
+ </div>
+</nav>
+
+<div class="container">
+<div class="row">
+
+<!-- INPUT -->
+<div class="col-lg-6">
+<div id="Box">
+<center><h3>Crop</h3></center><hr>
+
+<form method="post" action="/crop">
+
+<label><b>State</b></label>
+<select id="sts" name="stt" class="form-control"
+ onchange="handleStateChange(this.selectedIndex)" required></select>
+
+<br>
+<label><b>District</b></label>
+<select id="state" name="city" class="form-control" required></select>
+
+<script>print_state("sts");</script>
+
+<br>
+<label><b>Soil Type</b></label>
+<select id="soil" name="soil" class="form-control"
+ onchange="autoFillSoilProperties()" required>
+<option value="0">Select</option>
+<option value="1">Black</option>
+<option value="2">Clayey</option>
+<option value="3">Loamy</option>
+<option value="4">Red</option>
+<option value="5">Sandy</option>
+</select>
+
+<br>
+<label><b>Nitrogen</b></label>
+<input type="number" id="Nitrogen" name="nitrogen" class="form-control" required>
+
+<br>
+<label><b>Phosphorous</b></label>
+<input type="number" id="Phosphorous" name="phosphorous" class="form-control" required>
+
+<br>
+<label><b>Pottasium</b></label>
+<input type="number" id="Pottasium" name="pottasium" class="form-control" required>
+
+<br>
+<label><b>pH</b></label>
+<input type="number" step="0.01" id="ph" name="ph" class="form-control" required>
+
+<br>
+<label><b>Rainfall (mm)</b></label>
+<input type="number" step="0.01" id="Rainfall" name="rainfall" class="form-control" required>
+
+<br>
+<label><b>Temperature</b></label>
+<input type="number" step="0.01" id="temperature" name="temperature" class="form-control" required>
+
+<br>
+<label><b>Humidity</b></label>
+<input type="number" step="0.01" id="humidity" name="humidity" class="form-control" required>
+
+<br><br>
+<center>
+<button type="submit" class="btn btn-dark btn-lg">Predict</button>
+</center>
+
+</form>
+</div>
+</div>
+
+<!-- OUTPUT -->
+<div class="col-lg-6">
+<div id="Box1">
+<center><h3>Output</h3></center><hr>
+
+{% if p_result %}
+<h3>Recommended Crop: <b>{{p_result}}</b></h3>
+{% endif %}
+
+{% if imageDisplay %}
+<center><img src="{{imageDisplay}}" width="400"></center>
+{% endif %}
+
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

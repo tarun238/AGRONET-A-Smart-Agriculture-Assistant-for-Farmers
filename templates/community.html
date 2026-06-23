@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title></title>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <!-- Favicon-->
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+
+        <script type="text/JavaScript" src="{{ url_for('static', filename='js/cities.js') }}"></script>
+
+        <style>
+            #Box{
+                padding: 25px;
+                border-radius: 2rem;
+                background-color: rgba(255, 255, 255, 0.781);
+                box-shadow: 0px 8px 16px 4px #000000;
+                height: auto;
+            }
+            #Box1{
+                padding: 25px;
+                border-radius: 2rem;
+                background-color: rgba(255, 255, 255, 0.781);
+                box-shadow: 0px 8px 16px 4px #000000;
+                height: auto;
+            }
+            #row{
+                margin-top: 150px;
+            }
+            body{
+                /* background-color: aliceblue; */
+                background-image: url('https://images.stockcake.com/public/e/5/2/e52be19f-2fba-45b8-9054-5e66653c2cab/colorful-leaf-gradient-stockcake.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                background-size: 100% 100vh;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!-- <li class="nav-item"><a class="nav-link" href="#page-top">AUTISM</a></li> -->
+                <a class="navbar-brand h1" href="/crop"> AGRONET</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                      <li class="nav-item"><a class="nav-link" href="/buyer">crops</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/tools">tools</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/weather">Weather</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/market">Market</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/community">Community</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/agrichat">AgroChat</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#"><img src="data:image/jpg;base64,{{dp}}" style="width: 40px;height: 40px;border-radius: 50%;"><br>{{name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div class="row" id="row">
+                <div class="col-lg-6">
+                    <div id="Box">
+                        <center><h3>Query</h3></center>
+                        <hr>
+                        <br>
+                        <form method="post" action="/community" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="file" style="font-size: 17px;color: black;"><b>Choose</b></label>
+                                <input type="file" name="file" class="form-control" id="community">
+                              </div>
+                              <br>
+                              <div class="form-group">
+                                <label for="qn" style="font-size: 17px;color: black;"><b>Query</b></label>
+                                <input type="text" name="qn" class="form-control" id="qn" required>
+                              </div>
+                              <br>
+                              <div class="d-flex justify-content-center">
+                                <button
+                                  type="submit"
+                                  class="btn btn-success"
+                                >
+                                  submit
+                                </button>
+                              </div>
+                          </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="Box">
+                        <center><h3>FAQ</h3></center>
+                        <hr>
+                        <br>
+                        {% if rows %}
+                          {% for row in rows %}
+                          <hr>
+                              <b>{{row[0]}} . {{row[1]}}</b>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <img src="{{row[3]}}" style="width: 100%;">
+                                </div>
+                                <div class="col-lg-6">
+                                  <p><b>Query:</b>&nbsp;&nbsp;&nbsp; {{row[2]}}</p>
+                                </div>
+                              </div>
+                              {% if row[4] %}
+                            
+                                    <h5>Answers</h5>
+                                
+                                  {% for row1 in row[4] %}
+                                      <p> <b>{{row1[1]}}</b> &nbsp;&nbsp;&nbsp;&nbsp;{{row1[2]}}</p>
+                                  {% endfor %}
+                                {% else %}
+                                <p>0 Answers</p>
+                              {% endif %}
+                              <form action="/answers" method="post">
+                                <input type="text" value="{{row[0]}}"  name="ID" style="display: none;">
+                                <textarea name="ansr" id="ansr" cols="30" rows="3" class="form-control">Enter your answer</textarea>
+                                
+                                <input type="submit" class="btn btn-success">
+                              </form>
+                              <hr>
+                          {% endfor %}
+                        {% else %}
+                        <h4>{{msg}}</h4>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="http://127.0.0.1:5000/static/js/scripts.js"></script>
+        
+    </body>
+</html>

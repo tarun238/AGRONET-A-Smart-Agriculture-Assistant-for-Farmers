@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title></title>
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+        <style>
+            #Box{
+                padding: 25px;
+                border-radius: 2rem;
+                background-color: rgba(255, 255, 255, 0.781);
+                box-shadow: 0px 8px 16px 4px #000000;
+                height: auto;
+            }
+            #Box1{
+                padding: 25px;
+                border-radius: 2rem;
+                background-color: rgba(255, 255, 255, 0.781);
+                box-shadow: 0px 8px 16px 4px #000000;
+                height: auto;
+            }
+            .row{
+                margin-top: 150px;
+            }
+            body{
+                /* background-color: aliceblue; */
+                background-image: url('https://images.stockcake.com/public/2/9/b/29bfd27b-de5d-4192-a8d7-7b82d9f3d798/fresh-green-canopy-stockcake.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size: 100% 100vh;
+                background-attachment: fixed;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand h1" href="/crop"> AGRONET</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/crop">Crop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Yield">CropStats</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/fertilizer">Fertilizer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sell_tool">Tools</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sell_crop">Crops</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/aweather">Weather</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/amarket">Market</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/acommunity">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/season-grow">SeasonGrow</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/agrichat">AgroChat</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><img src="data:image/jpg;base64,{{dp}}" style="width: 40px;height: 40px;border-radius: 50%;"><br>{{name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="Box">
+                        <center><h3>Fertilizer</h3></center>
+                        <hr>
+                          
+                        <form method="post" action="/fertilizer">
+
+                <label for="soil"  ><b>Soil Type:</b></label>
+                <select name="soil" id="soil" class="form-control" onchange="autofillProperties()">
+                    <option value="0">select</option>
+                    <option value=1>Black</option>
+                    <option value=2>Clayey</option>
+                    <option value=3>Loamy</option>
+                    <option value=4>Red</option>
+                    <option value=5>Sandy</option>
+                </select> 
+        
+                <label for="crop"  ><b>Crop Type:</b></label>
+                <select name="crop" id="crop" class="form-control" onchange="autofillProperties()">
+                    <option value="0">select</option>
+                    <option value=1>Barley</option>
+                    <option value=2>Cotton</option>
+                    <option value=3>Ground Nuts</option>
+                    <option value=4>Maize</option>
+                    <option value=5>Millets</option>
+                    <option value=6>Oil Seeds</option>
+                    <option value=7>Paddy</option>
+                    <option value=8>Pulses</option>
+                    <option value=9>Sugarcane</option>
+                    <option value=10>Tobacco</option>
+                    <option value=11>Wheat</option>
+                </select> 
+                
+                <label for="temp"  ><b>Temperature:</b></label>
+                <input type="number" name="temp" id="temp" class="form-control" value="{{temp}}"  step="any"  placeholder="Enter the value" required="required" /> 
+                            
+                <label for="humid"  ><b>Humidity in %:</b></label>
+                <input type="number" name="humid" id="humid" class="form-control"  value="{{hum}}"  step="any"  placeholder="Enter the value" required="required" /> 
+        
+                <label for="mois"  ><b>Moisture:</b></label>
+                <input type="number" name="mois" id="mois" class="form-control"  value="{{moi}}"  step="any"  placeholder="Enter the value" required="required" /> 
+        
+                <label for="nitro" ><b>Nitrogen:</b></label>
+                <input type="number" name="nitro" id="nitro" class="form-control"  value="{{n}}" step="any"  placeholder="Enter the value" required="required" /> 
+        
+                <label for="phos"  ><b>Phosphorous:</b></label>
+                <input type="number" name="phos" id="phos" step="any" class="form-control"  value="{{p}}"   placeholder="Enter the value" required="required" /> 
+                
+                <label for="pota"  ><b>Pottasium:</b></label>
+                <input type="number" name="pota" id="pota" step="any" class="form-control"   value="{{k}}"  placeholder="Enter the value" required="required" /> 
+                <br>
+                <center><input type="submit" class="btn btn-success"  ></center>
+                              </form>
+                    </div>
+                </div>
+                <div class="col-lg-6" >
+                    <div id="Box1">
+                        <center><h3>Output</h3></center>
+                        <hr>
+                           <br>
+                          {% if prediction %}
+                        <h3><center> Fertilizer want to be used is </center> </h3>
+                            
+                          <h1><center>{{prediction}}</center></h1>
+
+                          {% endif %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="http://127.0.0.1:5000/static/js/scripts.js"></script>
+        
+        <script>
+            // ** Step 1: Data Structure for Recommended Values **
+            // NOTE: You MUST replace these example values with your actual, scientifically accurate data.
+            const recommendations = {
+                // Soil Type: Black (0)
+                "0": {
+                    // Crop Type: Barley (0)
+                    "11": { temp: 20, humid: 60, mois: 45, nitro: 8, phos: 4, pota: 5 },
+                    // Crop Type: Cotton (1)
+                    "1": { temp: 25, humid: 65, mois: 35, nitro: 60, phos: 30, pota: 40 },
+                    "2": { temp: 24, humid: 65, mois: 30, nitro: 19, phos: 19, pota: 19 },
+                    "3": { temp: 28, humid: 70, mois: 40, nitro: 110, phos: 55, pota: 60 },
+                    "4": { temp: 32, humid: 50, mois: 25, nitro: 40, phos: 20, pota: 30 },
+                    "5": { temp: 30, humid: 80, mois: 60, nitro: 17, phos: 17, pota: 17 },
+                    "6": { temp: 30, humid: 80, mois: 60, nitro: 10, phos: 26, pota: 26 },
+                    "7" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    "8" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:-35 , pota: 7 },
+                    "9" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    // Crop Type: Wheat (10)
+                    "10": { temp: 15, humid: 55, mois: 50, nitro: 90, phos: 45, pota: 60 },
+                    // Default values for other crops on Black soil (You should fill these in)
+                    "0": { temp: 0, humid: 0, mois: 0, nitro: 0, phos: 0, pota: 0 }
+                },
+                // Soil Type: Clayey (1)
+                "1": {
+                    // Crop Type: Paddy (6)
+                    "6": { temp: 30, humid: 80, mois: 60, nitro: 95, phos: 50, pota: 70 },
+                    // crop type: oil seed (5)
+                    "5": { temp: 30, humid: 80, mois: 60, nitro: 17, phos: 17, pota: 17 },
+                     "2": { temp: 24, humid: 65, mois: 30, nitro: 19, phos: 19, pota: 19 },
+                    "4": { temp: 28, humid: 70, mois: 40, nitro: 110, phos: 55, pota: 60 },
+                    "8": { temp: 32, humid: 50, mois: 25, nitro: 40, phos: 20, pota: 30 },
+                    "9": { temp: 30, humid: 80, mois: 60, nitro: 17, phos: 17, pota: 17 },
+                    "7": { temp: 30, humid: 80, mois: 60, nitro: 10, phos: 26, pota: 26 },
+                    "3" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    "1" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:-35 , pota: 7 },
+                    "10" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                     "11": { temp: 15, humid: 55, mois: 50, nitro: 90, phos: 45, pota: 60 },
+                    // Default values for other crops on Clayey soil
+                    "0": { temp: 0, humid: 0, mois: 0, nitro: 0, phos: 0, pota: 0 }
+                },
+                // Soil Type: Loamy (2)
+                "2": {
+                    // Crop Type: Maize (3)
+                     "8": { temp: 30, humid: 80, mois: 60, nitro: 10, phos: 26, pota: 26 },
+                    "11": { temp: 28, humid: 70, mois: 40, nitro: -10, phos: 9, pota: -4 },
+                    "9": { temp: 25, humid: 65, mois: 35, nitro: 60, phos: 30, pota: 40 },
+                    "10": { temp: 24, humid: 65, mois: 30, nitro: 19, phos: 19, pota: 19 },
+                    "3": { temp: 28, humid: 70, mois: 40, nitro: 110, phos: 55, pota: 60 },
+                    "7": { temp: 32, humid: 50, mois: 25, nitro: 40, phos: 20, pota: 30 },
+                    "4": { temp: 30, humid: 80, mois: 60, nitro: 17, phos: 17, pota: 17 },
+                    "5": { temp: 30, humid: 80, mois: 60, nitro: 10, phos: 26, pota: 26 },
+                    "6" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    "1" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:-35 , pota: 7 },
+                    "2" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    // Default values for other crops on Loamy soil
+                    "0": { temp: 0, humid: 0, mois: 0, nitro: 0, phos: 0, pota: 0 }
+                },
+                // Soil Type: Red (3)
+                "3": {
+                    // Crop Type: Ground Nuts (2)
+                    "2": { temp: 24, humid: 65, mois: 30, nitro: 19, phos: 19, pota: 19 },
+                    "11": { temp: 28, humid: 70, mois: 40, nitro: -10, phos: 9, pota: -4 },
+                    "7": { temp: 25, humid: 65, mois: 35, nitro: 60, phos: 30, pota: 40 },
+                    "4": { temp: 24, humid: 65, mois: 30, nitro: 19, phos: 19, pota: 19 },
+                    "1": { temp: 28, humid: 70, mois: 40, nitro: 110, phos: 55, pota: 60 },
+                    "6": { temp: 32, humid: 50, mois: 25, nitro: 40, phos: 20, pota: 30 },
+                    "3": { temp: 30, humid: 80, mois: 60, nitro: 17, phos: 17, pota: 17 },
+                    "9": { temp: 30, humid: 80, mois: 60, nitro: 10, phos: 26, pota: 26 },
+                    "5" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    "10":{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:-35 , pota: 7 },
+                    "8" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    // Default values for other crops on Red soil
+                    "0": { temp: 0, humid: 0, mois: 0, nitro: 0, phos: 0, pota: 0 }
+                },
+                // Soil Type: Sandy (4)
+                "4": {
+                    // Crop Type: Millets (4)
+                    "8": { temp: 32, humid: 50, mois: 25, nitro: 40, phos: 20, pota: 30 },
+                    "6" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+                    "3": { temp: 30, humid: 80, mois: 60, nitro: 10, phos: 26, pota: 26 },
+                    "4": { temp: 28, humid: 70, mois: 40, nitro: -10, phos: 9, pota: -4 },
+                    "7": { temp: 25, humid: 65, mois: 35, nitro: 60, phos: 30, pota: 40 },
+                    "5": { temp: 24, humid: 65, mois: 30, nitro: 19, phos: 19, pota: 19 },
+                    "1": { temp: 28, humid: 70, mois: 40, nitro: 110, phos: 55, pota: 60 },
+                    "10": { temp: 32, humid: 50, mois: 25, nitro: 40, phos: 20, pota: 30 },
+                    "11": { temp: 30, humid: 80, mois: 60, nitro: 17, phos: 17, pota: 17 },
+                    "9": { temp: 30, humid: 80, mois: 60, nitro: 10, phos: 26, pota: 26 },
+                    "2" :{ temp: 28, humid: 70, mois: 40, nitro: 27, phos:27 , pota: 27 },
+
+                    // Default values for other crops on Sandy soil
+                    "0": { temp: 0, humid: 0, mois: 0, nitro: 0, phos: 0, pota: 0 }
+                },
+            };
+
+            // ** Step 2: Function to Autofill **
+            function autofillProperties() {
+                const soilSelect = document.getElementById('soil');
+                const cropSelect = document.getElementById('crop');
+
+                const soilValue = soilSelect.value;
+                const cropValue = cropSelect.value;
+
+                // Retrieve the set of recommendations based on soil and crop
+                let properties = recommendations[soilValue]?.[cropValue];
+
+                // If a specific combination isn't found, try the soil's default
+                if (!properties) {
+                    properties = recommendations[soilValue]?.["default"];
+                }
+
+                // If no recommendation is found (even default), do nothing
+                if (!properties) {
+                    console.warn(`No recommendation data found for Soil: ${soilValue} and Crop: ${cropValue}.`);
+                    return; 
+                }
+
+                // ** Step 3: Update Input Fields **
+                document.getElementById('temp').value = properties.temp;
+                document.getElementById('humid').value = properties.humid;
+                document.getElementById('mois').value = properties.mois;
+                document.getElementById('nitro').value = properties.nitro;
+                document.getElementById('phos').value = properties.phos;
+                document.getElementById('pota').value = properties.pota;
+            }
+
+            // Optional: Run the autofill function on page load if default values are already set
+            window.onload = autofillProperties;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title></title>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <!-- Favicon-->
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+
+        <script type="text/JavaScript" src="{{ url_for('static', filename='js/cities.js') }}"></script>
+        <style>
+            #Box{
+                padding: 25px;
+                border-radius: 2rem;
+                background-color: rgba(255, 255, 255, 0.781);
+                box-shadow: 0px 8px 16px 4px #000000;
+                height: auto;
+            }
+            #Box1{
+                padding: 25px;
+                border-radius: 2rem;
+                background-color: rgba(255, 255, 255, 0.781);
+                box-shadow: 0px 8px 16px 4px #000000;
+                height: auto;
+            }
+            .row{
+                margin-top: 150px;
+            }
+            body{
+                /* background-color: aliceblue; */
+                background-image: url('https://images.stockcake.com/public/c/8/d/c8d3a000-1bb4-42ab-82e0-8b29ec625d68/tropical-green-sanctuary-stockcake.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                background-size: 100% 100vh;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!-- <li class="nav-item"><a class="nav-link" href="#page-top">AUTISM</a></li> -->
+                <a class="navbar-brand h1" href="/crop"> AGRONET</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/crop">Crop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Yield">CropStats</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/fertilizer">Fertilizer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sell_tool">Tools</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sell_crop">Crops</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/aweather">Weather</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/amarket">Market</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/acommunity">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/season-grow">SeasonGrow</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/agrichat">AgroChat</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><img src="data:image/jpg;base64,{{dp}}" style="width: 40px;height: 40px;border-radius: 50%;"><br>{{name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="Box">
+                        <center><h3>Crop Stats</h3></center>
+                        <hr>
+                        <br>
+                        <form method="post" action="/Yield">
+                            
+                              <div class="form-group">
+                                <label
+                                  for="season"
+                                  style="text-transform: capitalize; font-weight: bold"
+                                  >Choose Crop</label
+                                >
+                    
+                                <select name="season" id="season" class="form-control">
+                                    <option value=>select</option>
+                                  <option value="apple.csv">Apple</option>
+                                  <option value="carrot.csv">Carrot</option>
+                                  <option value="rice.csv">Rice</option>
+                                  <option value="wheat.csv">Wheat</option>
+                                  <option value="cotton.csv">Cotton</option>
+                                  <option value="maize.csv">Maize</option>
+                                  <option value="onion.csv">Onion</option>
+                                  <option value="tomato.csv">Tomato</option>
+                                </select>
+                              </div>
+                              
+                    <br>
+                              <div class="d-flex justify-content-center">
+                                <button
+                                  type="submit"
+                                  class="btn btn-success"
+                                  
+                                >
+                                  Predict
+                                </button>
+                              </div>
+                          </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div id="Box1">
+                        <center><h3>Output</h3></center>
+                        <hr>
+                        <br>
+                        <img src="http://127.0.0.1:5000/static/result_stats.png" alt="" style="width: 100%;">
+                        <!-- result_stats.png -->
+                       <!-- <h3> {{prediction}}</h3> -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="http://127.0.0.1:5000/static/js/scripts.js"></script>
+        
+    </body>
+</html>

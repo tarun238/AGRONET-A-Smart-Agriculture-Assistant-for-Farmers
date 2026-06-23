@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title></title>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <!-- Favicon-->
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+
+        <style>
+            /* .speech {border: 1px solid #DDD; width: 300px; padding: 0; margin: 0} */
+            .speech input { display: inline-block;width: 91%;}
+            .speech img {float: right; width: 40px }
+
+            #Box{
+                padding: 25px;
+                background-color: white;
+                box-shadow: 0px 8px 16px 4px #000000;
+                height: auto;
+                margin: auto;
+                margin-top: 150px !important;
+                width: 100%;
+            }
+            body{
+                /* background-color: aliceblue; */
+                background-image: url('https://images.stockcake.com/public/7/3/3/7334dd9d-f410-4496-8bc5-e97e1149dad8/serene-rice-fields-stockcake.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size: 100% 100vh;
+            }
+
+          </style>
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!-- <li class="nav-item"><a class="nav-link" href="#page-top">AUTISM</a></li> -->
+                <a class="navbar-brand h1" href="/crop">AGRONET </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/crop">Crop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Yield">CropStats</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/fertilizer">Fertilizer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sell_tool">Tools</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sell_crop">Crops</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/aweather">Weather</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/amarket">Market</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/acommunity">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/agrichat">AgroChat</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><img src="data:image/jpg;base64,{{dp}}" style="width: 40px;height: 40px;border-radius: 50%;"><br>{{name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" id="content">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div id="Box">
+                        <center><h3>Edit Crops</h3></center>
+                        <hr>
+                        <br>
+                        <form id="labnol" method="post" action="/edit_crop" enctype="multipart/form-data">
+                                <label for="">Id:</label>
+                                <input name="Id" value="{{result[0]}}" readonly class="form-control" type="number">
+
+                                <label for="">Crop:</label>
+                                <input name="crop" value="{{result[1]}}" placeholder="Enter crop name" class="form-control" type="text" required>
+
+                                <label for="">Price: </label>
+                                <input type="number" value="{{result[2]}}" name="cost" placeholder="enter price" class="form-control" id="">
+
+                                <label for="">Quantity: </label>
+                            <input type="number" name="qnt" value="{{result[5]}}" placeholder="enter quantity" class="form-control" id="">
+
+                           <label for="">District:</label>
+                           <select name="dist" id="" class="form-control">
+                            <option value="{{result[3]}}">{{result[3]}}</option>
+                            <option value=Bagalkot>Bagalkot</option>
+                            <option value=Bangalore Rural>Bangalore Rural</option>
+                            <option value=Bangalore Urban>Bangalore Urban</option>
+                            <option value=Belgaum>Belgaum</option>
+                            <option value=Bellary>Bellary</option>
+                            <option value=Bidar>Bidar</option>
+                            <option value=Vijayapura>Vijayapura</option>
+                            <option value=Chamarajanagar>Chamarajanagar</option>
+                            <option value=Chikkaballapur>Chikkaballapur</option>
+                            <option value=Chikkamagaluru>Chikkamagaluru</option>
+                            <option value=Chitradurga>Chitradurga</option>
+                            <option value=Dakshina Kannada>Dakshina Kannada</option>
+                            <option value=Davanagere>Davanagere</option>
+                            <option value=Dharwad>Dharwad</option>
+                            <option value=Gadag>Gadag</option>
+                            <option value=Gulbarga>Gulbarga</option>
+                            <option value=Hassan>Hassan</option>
+                            <option value=Haveri>Haveri</option>
+                            <option value=Kodagu>Kodagu</option>
+                            <option value=Kolar>Kolar</option>
+                            <option value=Koppal>Koppal</option>
+                            <option value=Mandya>Mandya</option>
+                            <option value=Mysore>Mysore</option>
+                            <option value=Raichur>Raichur</option>
+                            <option value=Ramanagara>Ramanagara</option>
+                            <option value=Shimoga>Shimoga</option>
+                            <option value=Tumkur>Tumkur</option>
+                            <option value=Udupi>Udupi</option>
+                            <option value=Uttara Kannada>Uttara Kannada</option>
+                            <option value=Yadgir>Yadgir</option>
+                           </select>
+
+                           <label for="">crop image:</label>
+                           <input type="file" class="form-control" name="file">
+
+                        <br>
+                       <center> <input type="submit" class="form-control btn btn-success"  value="Submit"></center>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="http://127.0.0.1:5000/static/js/scripts.js"></script>
+        
+    </body>
+</html>
